@@ -1,4 +1,8 @@
 const express = require("express")
-const {} = require("graphql-express")
+const {graphqlHTTP} = require("express-graphql")
+
 const app = express();
-app.listen(5000, ()=> console.log("Server Started"))
+
+app.use("/graphql", graphqlHTTP({schema:{}, graphiql: true}))
+
+app.listen(5000, ()=>console.log("server started"))
