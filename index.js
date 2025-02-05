@@ -3,7 +3,11 @@ const {graphqlHTTP} = require("express-graphql");
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList } = require("graphql");
 const app = express();
 
-const UsersList = []
+const UsersList = [
+    {id: "1", name: "Yahya", email: "yahya@gmail.com"},
+    {id: "2", name: "Obaid", email: "obaida@gmail.com"},
+    {id: "3", name: "hamza", email: "hamza@gmail.com"}
+]
 
 const userType = new GraphQLObjectType({
     name: "userType",
