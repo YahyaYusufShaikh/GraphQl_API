@@ -5,12 +5,12 @@ const app = express();
 
 const UsersList = [
     {id: "1", name: "Yahya", email: "yahya@gmail.com"},
-    {id: "2", name: "Obaid", email: "obaida@gmail.com"},
-    {id: "3", name: "hamza", email: "hamza@gmail.com"}
+    {id: "2", name: "Johnson", email: "johnson@gmail.com"},
+    {id: "3", name: "Raj", email: "raj@gmail.com"}
 ]
 
 const UserType = new GraphQLObjectType({
-    name: "userType",
+    name: "UserType",
     fields: ()=>({
         id: {type: GraphQLID},
         name: {type: GraphQLString},
@@ -26,6 +26,14 @@ const RootQuery = new GraphQLObjectType({
             type: new GraphQLList(UserType),
             resolve(){
                 return UsersList;
+            }
+        },
+        //to get single user by id
+        user:{
+            type: UserType,
+            args: {id: {type: GraphQLID}},
+            resolve(parent, args){
+                return UsersList.find((user)=>user.id === args.id)
             }
         }
     }
