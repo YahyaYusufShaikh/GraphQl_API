@@ -10,7 +10,7 @@ const UsersList = [
 ]
 
 const UserType = new GraphQLObjectType({
-    name: "userType",
+    name: "UserType",
     fields: ()=>({
         id: {type: GraphQLID},
         name: {type: GraphQLString},
@@ -58,7 +58,7 @@ const mutations = new GraphQLObjectType({
 
         //update a user
         updateUser:{
-            tyhpe: UserType,
+            type: UserType,
             args:{
                 id: {type: GraphQLID},
                 name: {type: GraphQLString},
