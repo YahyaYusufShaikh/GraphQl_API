@@ -39,6 +39,22 @@ const RootQuery = new GraphQLObjectType({
     }
 })
 
+const mutations = new GraphQLObjectType({
+    name: 'mutations',
+    fields:{
+        // adding a user
+        addUser:{
+            type: UserType,
+            args: {
+                name:{type:GraphQLString},
+                email:{type:GraphQLString},
+            },
+            resolve
+        }
+    }
+})
+
+
 const schema = new GraphQLSchema({query: RootQuery});
 
 app.use("/graphql", graphqlHTTP({schema, graphiql: true}))
