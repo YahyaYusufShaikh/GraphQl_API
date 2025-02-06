@@ -70,7 +70,20 @@ const mutations = new GraphQLObjectType({
                 user.name = name;
                 return user;
             }
-        }
+        },
+
+        //delete user
+        deleteUser:{
+            type: UserType,
+            args:{
+                id: {type: GraphQLID},
+            },
+            resolve(parent, { id }){
+                const user = UsersList.find((u)=>u.id == id);
+                UsersList.filter((u)=> u.id !== id);
+                return user;
+            }
+        }   
     }
 })
 
