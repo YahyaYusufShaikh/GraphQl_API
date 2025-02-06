@@ -10,7 +10,7 @@ const UsersList = [
 ]
 
 const UserType = new GraphQLObjectType({
-    name: "UserType",
+    name: "userType",
     fields: ()=>({
         id: {type: GraphQLID},
         name: {type: GraphQLString},
@@ -53,6 +53,22 @@ const mutations = new GraphQLObjectType({
                 const newUser = {name, email, id:Date.now().toString()};
                 UsersList.push(newUser);
                 return newUser;
+            }
+        },
+
+        //update a user
+        updateUser:{
+            tyhpe: UserType,
+            args:{
+                id: {type: GraphQLID},
+                name: {type: GraphQLString},
+                email: {type: GraphQLString},
+            },
+            resolve(parent, {id, name, email}){
+                const user = UsersList.find((u)=>u.id === id);
+                user.email = email;
+                user.name = name;
+                return user;
             }
         }
     }
