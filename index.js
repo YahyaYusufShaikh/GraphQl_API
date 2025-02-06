@@ -49,7 +49,11 @@ const mutations = new GraphQLObjectType({
                 name:{type:GraphQLString},
                 email:{type:GraphQLString},
             },
-            resolve
+            resolve(parent, {name, email}){
+                const newUser = {name, email, id:Date.now().toString()};
+                UsersList.push(newUser);
+                return newUser;
+            }
         }
     }
 })
