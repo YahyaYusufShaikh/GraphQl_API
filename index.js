@@ -3,7 +3,7 @@ const {graphqlHTTP} = require("express-graphql");
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList, GraphQLSchema } = require("graphql");
 const app = express();
 
-const UsersList = [
+let UsersList = [
     {id: "1", name: "Yahya", email: "yahya@gmail.com"},
     {id: "2", name: "Johnson", email: "johnson@gmail.com"},
     {id: "3", name: "Raj", email: "raj@gmail.com"}
@@ -80,7 +80,7 @@ const mutations = new GraphQLObjectType({
             },
             resolve(parent, { id }){
                 const user = UsersList.find((u)=>u.id == id);
-                UsersList.filter((u)=> u.id !== id);
+                UsersList = UsersList.filter((u)=> u.id !== id);
                 return user;
             }
         }   
